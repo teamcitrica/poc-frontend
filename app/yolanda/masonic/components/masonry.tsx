@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import * as React from "react";
 import { Masonry } from "masonic";
 import useWindowScroll from "@react-hook/window-scroll";
 
@@ -17,7 +17,8 @@ export interface MasonryProps {
 }
 
 const Header = ({ title }: { title: string }) => {
-  const scrollY = useWindowScroll(5);
+  const rawScrollY = useWindowScroll(5);
+  const scrollY = typeof window === "undefined" ? 0 : rawScrollY;
   
   return (
     <h1 className={style("header", scrollY > 64 ? "minify" : undefined)}>
@@ -46,9 +47,9 @@ export function GalleryMasonry({
     <main className={style("container")}>
       <div className={style("masonic")}>
         <Masonry
-          items={items}
           columnGutter={columnGutter}
           columnWidth={columnWidth}
+          items={items}
           overscanBy={overscanBy}
           render={GalleryCard}
         />
