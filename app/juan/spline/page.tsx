@@ -1,5 +1,5 @@
 // app/juan/spline/page.tsx (o donde quieras usar el componente)
-'use client'
+"use client"
 
 import { useState } from 'react'
 // Importación correcta usando el path absoluto

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import * as React from "react";
 import { Masonry } from "masonic";
 import useWindowScroll from "@react-hook/window-scroll";
