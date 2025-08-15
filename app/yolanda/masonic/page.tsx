@@ -1,4 +1,5 @@
 // app/yolanda/masonic/page.tsx
+"use client"
 import dynamic from 'next/dynamic';
 import cats from "./components/cats";
 import { MasonryItem } from "./components/masonry";
