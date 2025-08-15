@@ -14,9 +14,13 @@ const nextConfig = {
   // Transpilación de módulos ESM para Spline
   transpilePackages: ['@splinetool/react-spline', '@splinetool/runtime'],
 
-  // Configuración condicional: solo se aplica si no estás usando Turbopack
   webpack: (config, { isServer, nextRuntime }) => {
-    // Si estamos en Turbopack, no tocar nada
+    // Extensiones extra para resolver .ts/.tsx como .js/.jsx
+    config.resolve.extensionAlias = {
+      '.js': ['.js', '.jsx', '.ts', '.tsx']
+    };
+
+    // Si estamos en Turbopack, no tocar nada más
     if (nextRuntime === 'nodejs') {
       // Soporte para archivos .splinecode
       config.module.rules.push({
