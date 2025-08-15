@@ -27,7 +27,7 @@ const Header = ({ title }: { title: string }) => {
 };
 
 const GalleryCard = ({ data }: { data: MasonryItem }) => {
-  const { src } = data;
+  const { id, src } = data;
   return (
     <div className={style("card")}>
       <img className={style("img")} alt="Gatos" src={src} />
