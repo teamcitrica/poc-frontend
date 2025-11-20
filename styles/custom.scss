@@ -16,3 +16,53 @@
 .circular-gallery:active {
   cursor: grabbing;
 }
+
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.parallax-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  border-radius: 12px;
+  z-index: 1000;
+  font-size: 14px;
+}
+
+.control-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
