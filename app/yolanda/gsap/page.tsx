@@ -1,11 +1,11 @@
-import HorizontalParallax from "./components/horizontal-parallax";
+import ParallaxHorizontalDemo from "./components/parallax-horizontall";
 
 export default function GSAPEffectsDemo() {
   return (
     <>
-       <section>
-        <HorizontalParallax />
-      </section>
+      <main className="min-h-screen bg-black">
+        <ParallaxHorizontalDemo />
+      </main>
     </>
   );
 }
