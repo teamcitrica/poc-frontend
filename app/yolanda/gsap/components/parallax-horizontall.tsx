@@ -9,12 +9,12 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function ParallaxHorizontalDemo() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Datos individuales para animar cada card
   const cardData = [
     { id: "card-1", translatex: 150, rotate: 10 },
     { id: "card-2", translatex: 250, rotate: -15 },
-    { id: "card-3", translatex: 180, rotate: 20 },
-    { id: "card-4", translatex: 300, rotate: -25 },
+    { id: "card-3", translatex: 400, rotate: 20 },
+    { id: "card-4", translatex: 550, rotate: -25 },
+    { id: "card-5", translatex: 750, rotate: 30 },
   ];
 
   useGSAP(() => {
@@ -29,38 +29,36 @@ export default function ParallaxHorizontalDemo() {
     const scrollDistance = trackWidth - viewportWidth;
 
     // PARALLAX HORIZONTAL
-    gsap.to(track, {
-      x: -scrollDistance,
-      ease: "none",
+    const mainTl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
-        pin: true,
+        start: "top top",
+        end: () => `+=${trackWidth}`,
         scrub: 1,
-        end: () => "+=" + trackWidth,
-      },
+        pin: true,
+        invalidateOnRefresh: true,
+        pinSpacing: true,
+      }
+    });
+
+    // Animación del track horizontal
+    mainTl.to(track, {
+      x: -scrollDistance,
+      ease: "none"
     });
 
     // ANIMACIÓN DE LAS CARDS
-    cardData.forEach((c) => {
+    cardData.forEach((c, index) => {
       const cardElement = container.querySelector(`#${c.id}`) as HTMLElement;
-
-      if (!cardElement) return;
-
-      ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: "+=" + trackWidth,
-        scrub: 1,
-        onUpdate: (self) => {
-          gsap.to(cardElement, {
-            x: c.translatex * self.progress,
-            rotate: c.rotate * self.progress * 2,
-            duration: 0.2,
-            ease: "power3.out",
-          });
-        },
-      });
+      if (cardElement) {
+        mainTl.to(cardElement, {
+          x: c.translatex,
+          rotation: c.rotate,
+          ease: "none", 
+        }, 0);
+      }
     });
+
   });
 
   return (
@@ -69,20 +67,22 @@ export default function ParallaxHorizontalDemo() {
         ref={containerRef}
         className="h-screen w-screen overflow-hidden bg-black text-white flex items-center relative"
       >
-
         <div className="track whitespace-nowrap flex items-center px-20 relative">
           <div className="absolute inset-0 pointer-events-none">
-            <div id="card-1" className="card absolute top-[20%] left-[10%] w-40">
-              <img src="/img/orange1.png" alt="orange1" />
+            <div id="card-1" className="card absolute top-[20%] left-[5%] w-12 md:w-40 lg:w-48">
+              <img src="/img/orange1.png" alt="orange1" className="w-full h-auto" />
             </div>
-            <div id="card-2" className="card absolute top-[50%] left-[30%] w-44">
-              <img src="/img/orange2.png" alt="orange2" />
+            <div id="card-2" className="card absolute top-[50%] left-[25%] w-12 md:w-40 lg:w-48">
+              <img src="/img/orange2.png" alt="orange2" className="w-full h-auto" />
             </div>
-            <div id="card-3" className="card absolute top-[30%] left-[60%] w-36">
-              <img src="/img/orange3.png" alt="orange3" />
+            <div id="card-3" className="card absolute top-[30%] left-[40%] w-12 md:w-40 lg:w-48">
+              <img src="/img/orange3.png" alt="orange3" className="w-full h-auto" />
             </div>
-            <div id="card-4" className="card absolute top-[60%] left-[75%] w-48">
-              <img src="/img/orange4.jpeg" alt="orange4" />
+            <div id="card-4" className="card absolute top-[60%] left-[55%] w-12 md:w-40 lg:w-48">
+              <img src="/img/orange4.jpeg" alt="orange4" className="w-full h-auto" />
+            </div>
+            <div id="card-5" className="card absolute top-[40%] left-[70%] w-12 md:w-40 lg:w-48">
+              <img src="/img/orange5.jpeg" alt="orange5" className="w-full h-auto" />
             </div>
           </div>
 
