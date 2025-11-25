@@ -91,10 +91,6 @@ export default function ParallaxHorizontalDemo() {
           </h1>
         </div>
       </div>
-
-      <section className="w-full h-screen bg-white text-black flex items-center justify-center text-4xl font-bold">
-        siguiente sección
-      </section>
     </>
   );
 }
