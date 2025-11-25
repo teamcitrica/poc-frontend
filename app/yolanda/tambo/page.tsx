@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className='w-full max-w-[1920px] relative overflow-hidden mx-auto'>
+      <div className='w-full max-w-[1920px] relative overflow-hidden mx-auto bg-black'>
         <section>
           <SectionFooter />
         </section>
@@ -17,7 +17,7 @@ export default function Home() {
         <section>
           <SectionPromo />
         </section>
-        <section className="bg-yellow-400">
+        <section>
           <SectionForm />
         </section>
         <section>
